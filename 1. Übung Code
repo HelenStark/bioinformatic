@@ -1,0 +1,22 @@
+def patterncount (input_sequence, pattern): 
+    count = 0
+    for i in range (0, len(input_sequence)-len(pattern)+1):
+        sequence=input_sequence[i:len(pattern)+i]
+        if sequence == pattern:
+            count = count +1
+    return count       
+
+def frequentwords(input_sequence,k):
+    frequentpattern=[]
+    COUNT=[]
+    for i in range (0, len(input_sequence)-k+1):
+        pattern=input_sequence[i:i+k]
+        number=patterncount(input_sequence, pattern) #könnte verkürzt werden,
+        #indem bei COUNT.aapend direkt patterncount direkt aufgerufen wird.
+        #Hat bei mir nicht funktionier, aber da müsste ein Weg sein.
+        COUNT.append(number)                      
+    maxcount=max(COUNT)
+    for i in range (0,len(input_sequence)-k):
+        if COUNT[i] == maxcount:
+             frequentpattern.append(input_sequence[i:i+k])
+    return list(set(frequentpattern)) 
